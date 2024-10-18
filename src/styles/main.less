@@ -1,0 +1,60 @@
+// .lobster-regular {
+//     font-family: "Lobster", sans-serif;
+//     font-weight: 400;
+//     font-style: normal;
+//   }
+
+// .roboto-regular {
+//     font-family: "Roboto", sans-serif;
+//     font-weight: 400;
+//     font-style: normal;
+//   }
+  
+@fontePrincipal: "Roboto", sans-serif;
+@fonteTitulo: "Lobster", sans-serif;
+@corTexto: #fff;
+@corFundo:#eb3b5a;
+@corTextoBotao:#000;
+@corFundoBotao: #f7b731;
+
+body{
+    background-color: @corFundo ;
+    font-family: @fontePrincipal;
+    color: @corTexto;
+}
+
+h1{
+    font-family: @fonteTitulo;
+}
+
+main{
+    max-width: 960px;
+    width: 100%;
+    margin: 0 auto;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+button{
+    padding: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-top: 16px;
+    border-radius: 8px;
+    background-color: @corFundoBotao;
+    color: @corTextoBotao;
+    font-family: @fontePrincipal;
+}
+
+input{
+    display: block;
+    margin: 16px auto 0;
+    font-size: 1.1em;
+    max-width: 120px;
+    border: none;
+    background-color: transparent;
+    text-align: center;
+    color: #fff;
+    border-bottom: solid 2px #fff;
+}
