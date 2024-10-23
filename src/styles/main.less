@@ -31,7 +31,7 @@ main{
     max-width: 960px;
     width: 100%;
     margin: 0 auto;
-    font-size: 1.5em;
+    font-size: 2em;
     text-align: center;
 }
 
@@ -45,6 +45,13 @@ button{
     background-color: @corFundoBotao;
     color: @corTextoBotao;
     font-family: @fontePrincipal;
+    transition: ease all .5s;
+
+    &:hover{
+        // padding: 20px;
+        color: #f7b731;
+        background-color: #000;
+    }
 }
 
 input{
@@ -57,4 +64,18 @@ input{
     text-align: center;
     color: #fff;
     border-bottom: solid 2px #fff;
+}
+
+.resultado{
+    padding: 16px;
+    margin-top: 120px;
+    border: 8px dotted black;
+    text-align: center;
+    display: none;
+
+    span{
+        font-weight: bold;
+        font-size: 1.5em;
+        display: block;
+    }
 }

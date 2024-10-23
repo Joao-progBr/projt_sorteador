@@ -51,7 +51,7 @@ module.exports = function(grunt){
                             replacement:'./styles/main.css' // O novo valor que substituirá 'ENDERECO_DO_CSS'
                         },
                         {
-                            match:'@@ENDERECO_DO_JS',  // O texto que você deseja encontrar
+                            match:'ENDERECO_DO_JS',  // O texto que você deseja encontrar
                             replacement:'../src/scripts/main.js' // O novo valor que substituirá 'ENDERECO_DO_CSS'
                         }
                     ]
@@ -73,6 +73,10 @@ module.exports = function(grunt){
                         {
                             match:'ENDERECO_DO_CSS',  
                             replacement:'./styles/main.min.css' 
+                        },
+                        {
+                            match:'ENDERECO_DO_JS',  // O texto que você deseja encontrar
+                            replacement:'./scripts/main.min.js' // O novo valor que substituirá 'ENDERECO_DO_CSS'
                         }
                     ]
                 },
@@ -101,8 +105,20 @@ module.exports = function(grunt){
             }
         },
         //Objetivo: Limpar (ou seja, deletar) a pasta ou arquivos especificados após o uso.
-        clean:['prebuild']
+        clean:['prebuild'],
         //prebuild: Indica que a pasta prebuild será excluída após o término das tarefas. Isso é útil para remover arquivos temporários criados durante o processo de build.
+
+        uglify:{
+            target:{
+                files:{
+                    'dist/scripts/main.min.js' : 'src/scripts/main.js'
+                }
+            }
+        }
+
+
+
+
     })
 
     //Carrega o plugin Less do Grunt, o qual você instalou anteriormente via npm, para compilar arquivos .less em .css.
@@ -111,6 +127,7 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-replace')
     grunt.loadNpmTasks('grunt-contrib-htmlmin')
     grunt.loadNpmTasks('grunt-contrib-clean')
+    grunt.loadNpmTasks('grunt-contrib-uglify')
 
     //'default': Define a tarefa que será executada por padrão se você apenas rodar o comando grunt. Ela compilará o Less no modo desenvolvimento.
     //grunt.registerTask('default', ['less:development'])
@@ -119,7 +136,7 @@ module.exports = function(grunt){
     grunt.registerTask('default', ['watch'])
 
     //'build': Registra uma tarefa customizada chamada build, que compila o Less no modo produção quando você executa grunt build.
-    grunt.registerTask('build',['less:production', 'htmlmin:dist', 'replace:dist', 'clean'])
+    grunt.registerTask('build',['less:production', 'htmlmin:dist', 'replace:dist', 'clean', 'uglify'])
     //htmlmin: A primeira tarefa minifica o arquivo src/index.html e cria uma versão otimizada em prebuild/index.html.
     //replace: Após a minificação, o código replace substitui o placeholder ENDERECO_DO_CSS em prebuild/index.html pelo caminho real do CSS minificado (./styles/main.min.css), salvando o resultado na pasta dist/.
     //clean: Por último, a tarefa clean exclui a pasta prebuild, removendo o arquivo temporário criado no processo.
